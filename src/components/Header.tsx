@@ -58,8 +58,9 @@ function Header() {
 
 	return (
 		<header className="backdrop-blur-sm w-full flex justify-between items-center sticky top-0 z-10">
-			<Link to="/">
+			<Link to="/" className="flex items-center">
 				<img src={reactLogo} className="logo react" alt="React logo" />
+				<span className='text-3xl'>Home</span>
 			</Link>
 			<div className="flex gap-3">
 				{isAuthenticated ? (
