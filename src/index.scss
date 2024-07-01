@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$text-color-dark: rgba(255, 255, 255, 0.87);
+$background-color-dark: #242424;
+$link-color-dark: $text-color-dark;
+$link-hover-color-dark: #535bf2;
+$button-background-dark: #1a1a1a;
+$card-background-dark: #07090f8f;
+
+$text-color-light: #213547;
+$background-color-light: #ffffff;
+$link-color-light: $text-color-light;
+$link-hover-color-light: #747bff;
+$button-background-light: #f9f9f9;
+$card-background-light: #f9f9f9e0;
+
+$text-color: $text-color-dark;
+$background-color: $background-color-dark;
+$link-color: $link-color-dark;
+$link-hover-color: $link-hover-color-dark;
+$button-background: $button-background-dark;
+$card-background: $card-background-dark;
+
+:root {
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
+}
+
+a {
+	font-weight: 500;
+	color: $link-color;
+	text-decoration: inherit;
+
+	&:hover {
+		color: $link-hover-color;
+	}
+}
+
+body {
+	margin: 0;
+	display: flex;
+	place-items: center;
+	min-width: 320px;
+	min-height: 100vh;
+	color: $text-color;
+	background-color: $background-color;
+}
+
+body.light {
+	color: $text-color-light;
+	background-color: $background-color-light;
+
+	a {
+		color: $link-color-light;
+
+		&:hover {
+			color: $link-hover-color-light;
+		}
+	}
+
+	button {
+		color: $text-color-light;
+		background-color: $button-background-light;
+	}
+
+	input {
+		background-color: $card-background-light;
+	}
+
+	.card {
+		background-color: $card-background-light;
+		border-color: $card-background-light;
+
+		&:hover {
+			border-color: $card-background-dark;
+		}
+	}
+}
+
+h1 {
+	font-size: 3.2em;
+	line-height: 1.1;
+}
+
+button {
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	font-size: 1em;
+	font-weight: 500;
+	font-family: inherit;
+	background-color: $button-background;
+	cursor: pointer;
+	transition: border-color 0.25s;
+
+	&:hover {
+		border-color: $link-color;
+	}
+
+	&:focus,
+	&:focus-visible {
+		outline: 4px auto -webkit-focus-ring-color;
+	}
+}
+
+input {
+	background-color: $card-background;
+}
+
+.card {
+	background-color: $card-background;
+	color: $text-color;
+	border-color: $card-background;
+
+	&:hover {
+		border-color: white;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--text-color: $text-color-light;
+		--background-color: $background-color-light;
+		--link-color: $link-color-light;
+		--link-hover-color: $link-hover-color-light;
+		--button-background: $button-background-light;
+		--card-background: card-background-light;
+	}
+}
