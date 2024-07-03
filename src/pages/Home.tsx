@@ -8,25 +8,32 @@ function Home() {
 	const { fetch, data, loading, error } = useFetch<ApiResponse>();
 	const [searchQuery, setSearchQuery] = useState('');
 	const [currentPage, setCurrentPage] = useState(1);
+	
+	const dataPerPage = 12;
 
 	const getAllUrl = `https://dummyjson.com/products?limit=12&skip=${
-		(currentPage - 1) * 12
+		(currentPage - 1) * dataPerPage
 	}`;
 
+	const searchUrl = `https://dummyjson.com/products/search?q=${encodeURIComponent(
+		searchQuery,
+	)}&limit=${dataPerPage}`;
+
 	useEffect(() => {
-		fetch(getAllUrl);
+		if (searchQuery.trim() == '') {
+			fetch(getAllUrl);
+		} else {
+			fetch(`${searchUrl}&skip=${(currentPage - 1) * dataPerPage}`);
+		}
 	}, [fetch, currentPage]);
 
 	const handleSearch = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-
+		
 		if (searchQuery.trim() == '') {
 			fetch(getAllUrl);
 		} else {
-			const searchUrl = `https://dummyjson.com/products/search?q=${encodeURIComponent(
-				searchQuery,
-			)}`;
-
+			setCurrentPage(1);
 			fetch(searchUrl);
 		}
 	};
@@ -69,7 +76,7 @@ function Home() {
 						</button>
 						<button
 							onClick={() => handlePageChange(currentPage + 1)}
-							disabled={data.products.length < data.limit}
+							disabled={currentPage == data.products.length / dataPerPage + 1 }
 						>
 							Next
 						</button>
